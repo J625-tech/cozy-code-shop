@@ -1,18 +1,19 @@
 import "./Navbar.scss";
+import { Link } from "react-router-dom";
+
 
 const Navbar = () => {
     return (
-        <div className="navbar">
-            <h2 className="logo">CozyCodeShop</h2>
-            <input placeholder="Search products...." />
+        <header className="navbar">
+            <h2>CozyCodeShop</h2>
 
-            <div className="links">
-                <a href="#">Home</a>
-                <a href="#">Shop</a>
-                <a href="#">Cart</a>
+            <nav>
+                <Link to="/">Home</Link>
+                <Link to="/shop">Shop</Link>
+                <Link to="/about">About</Link>
+            </nav>
 
-            </div>
-        </div>
+        </header>
     );
 };
 
