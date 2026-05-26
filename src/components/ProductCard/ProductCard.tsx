@@ -1,5 +1,6 @@
 import { useCart } from "../../context/CartContext";
 
+
 type Product = {
     id: number;
     title: string;

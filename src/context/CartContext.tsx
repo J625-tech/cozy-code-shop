@@ -1,11 +1,6 @@
 import { createContext, useContext, useState } from "react";
+import type { Product } from "../types/product";
 
-type Product = {
-    id: number;
-    title: string;
-    price: number;
-    image: string;
-};
 
 type CartContextType ={
     cart: Product[];
@@ -27,9 +22,13 @@ export const CartProvider = ({ children }: any) => {
     };
 
     return (
-        <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
-            {children}
+        <CartContext.Provider 
+        value={{ cart, 
+                addToCart, 
+                removeFromCart }}>
+        {children}
         </CartContext.Provider>
+
     );
     };
 

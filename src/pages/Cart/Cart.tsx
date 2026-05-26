@@ -1,7 +1,11 @@
 import { useCart } from "../../context/CartContext";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Cart() {
     const { cart, removeFromCart } = useCart();
+
+    const navigate = useNavigate();
 
     const totalPrice = cart.reduce(
         (sum, item) => sum + item.price,
@@ -10,7 +14,7 @@ export default function Cart() {
 
     return (
         <div style={{ padding: "20px", color: "white" }}>
-            <h1>Cart</h1>
+            <h1>Shopping Cart</h1>
 
             {cart.length === 0 ? (
                 <p>Cart is empty</p>
@@ -37,6 +41,10 @@ export default function Cart() {
                     ))}
 
                     <h2>Total: {totalPrice}$</h2>
+
+                    <button onClick={() => navigate("./checkout")}> Checkout
+                                        
+                    </button>
                 </>
             )}
         </div>
