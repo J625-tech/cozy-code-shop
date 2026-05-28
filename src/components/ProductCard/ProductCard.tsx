@@ -1,27 +1,27 @@
+import "./ProductCard.scss";
 import { useCart } from "../../context/CartContext";
+import type { Product } from "../../types/product";
 
-
-type Product = {
-    id: number;
-    title: string;
-    image: string;
-    price: number;
+type ProductCardProps ={
+    product: Product;
 };
 
-export const ProductCard = ({ product }: { product: Product }) => {
+const ProductCard = ({ product }: ProductCardProps) => {
     const { addToCart } = useCart();
-    
-    return (
-        <div>
-            <img src={product.image} alt={product.title} />
-            <h3>{product.title}</h3>
-            <p>${product.price.toFixed(2)}</p>
 
-            <button onClick={() => addToCart(product)}>
-                Add to Cart 
-            </button>
+
+    return (
+        <div className="product-card">
+            <img src={product.image} alt={product.name}/>
+
+            <h3>{product.name}</h3>
+            <span>{product.category}</span>
+            <p>${product.price}</p>
+
+            <button onClick={() => addToCart}>Add to cart</button>
+
         </div>
-    )
-}
+    );
+};
 
 export default ProductCard;

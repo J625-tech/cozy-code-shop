@@ -1,10 +1,8 @@
 import { useCart } from "../../context/CartContext";
 import { useNavigate } from "react-router-dom";
 
-
 export default function Cart() {
     const { cart, removeFromCart } = useCart();
-
     const navigate = useNavigate();
 
     const totalPrice = cart.reduce(
@@ -31,7 +29,7 @@ export default function Cart() {
                         >
                             <img src={item.image} width="100" />
 
-                            <h3>{item.title}</h3>
+                            <h3>{item.name}</h3>
                             <p>{item.price}$</p>
 
                             <button onClick={() => removeFromCart(item.id)}>
@@ -42,13 +40,11 @@ export default function Cart() {
 
                     <h2>Total: {totalPrice}$</h2>
 
-                    <button onClick={() => navigate("./checkout")}> Checkout
-                                        
+                    <button onClick={() => navigate("/checkout")}>
+                        Checkout
                     </button>
                 </>
             )}
         </div>
     );
 }
-
-

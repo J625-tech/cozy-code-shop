@@ -1,0 +1,78 @@
+.registerPage{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #f8f5ff, #f3f7ff);
+    padding: 20px;
+}
+
+.registerCard{
+    width: 350px;
+    min-width: 320px;
+    background: whitesmoke;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0,.08);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+
+h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin-bottom: 5px;
+}
+
+p{
+    color: #777;
+    margin-bottom: 20px;
+    font-size: 14px;
+ }
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    input{
+        padding: 12px 14px;
+        border-radius: 14px;
+        font-size: 15px;
+        transition: 0.3s ease;
+        background: #fafafa;
+
+        &:focus{
+            outline: none;
+            border-color: #c7b8ff;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(199, 184, 255, 0.2);
+        }
+    }
+    button{
+        margin-top: 10px;
+        padding: 12px;
+        border: none;
+        border-radius: 14px;
+        background: #b79cff;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3 ease;
+
+        &:hover {
+            background: #a689f5;
+        }
+    }
+}
+
+.loginText{
+    margin-top: 20px;
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+}
