@@ -1,8 +1,11 @@
+@import "../../styles/variables.scss";
+
+
 .navbar {
     display: flex;
     justify-content: space-between;
     padding: 18px 40px;
-    background: #9b5c9b;
+    background-color: $primary-color;
     align-items: center;
 }
 .logo {
@@ -18,7 +21,7 @@
 
     a {
         text-decoration: none;
-        color: white;
+        color: $text-color;
         font-size: 15px;
         font-weight: 500;
         transition: 0.3s;

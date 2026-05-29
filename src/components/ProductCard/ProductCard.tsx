@@ -18,7 +18,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <span>{product.category}</span>
             <p>${product.price}</p>
 
-            <button onClick={() => addToCart}>Add to cart</button>
+            <button onClick={() => addToCart(product)}>
+                Add to cart</button>
 
         </div>
     );
