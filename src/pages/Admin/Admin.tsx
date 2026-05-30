@@ -9,7 +9,7 @@ export default function Admin() {
     const [password,setPassword] = useState("");
     const handleLogin = () => {
         if (email === "admin@gmail.com" && password === "123456") {
-            navigate("./admin/dashboard");
+            navigate("/admin/dashboard");
         } else {
             alert("wrong email or password");
         }

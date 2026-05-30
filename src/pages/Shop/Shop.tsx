@@ -1,14 +1,22 @@
 import { useState } from "react";
-import { products } from "../../mock/products";
+import { useEffect} from "react"
+import { getProducts} from "../../utils/productStorage";
+import type { Product } from "../../types/product";
+
 import  ProductCard  from "../../components/ProductCard";
 import Pagination from "../../components/Pagination/Pagination";
 
 
 const Shop = () => {
+    const [products, setProducts] = useState<Product[]>([]);
     const [page, setPage] = useState(1);
 
     const productsPerPage = 2;
-     
+
+    useEffect(() => {
+        setProducts(getProducts());
+    }, []);
+
     const totalPages = Math.ceil(
         products.length / productsPerPage
     );

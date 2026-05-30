@@ -1,24 +1,68 @@
 .admin-dashboard {
     min-height: 100vh;
-    padding: 40px;
-    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    padding: 50px 20px;
+    background: #0d0d0d;
     color: white;
 
     h1{
         text-align: center;
         margin-bottom: 40px;
-        font-size: 42px;
+        font-size: 50px;
     }
 
     .admin-form {
-        max-width: 500px;
+        max-width: 1200px;
         margin: 0 auto;
-        background: #1e1e3f;
+        background: #181818;
         padding: 30px;
         border-radius: 20px;
-        display: flex;
-        flex-direction: column;
+        border: 1px solid #7c3aed33;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
         gap: 20px;
+
+        h2{
+            grid-column: 1 /  -1;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 36px;
+        }
+
+        input{
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #444;
+            border-radius: 12px;
+            background: #111;
+            color: white;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input::placeholder{
+            color: #999;
+        }
+
+        input:focus{
+            outline: none;
+            border-color: #9b5c9b;
+        }
+
+        button{
+            grid-column: 1 / -1;
+            background: #9b5c9b;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover{
+            background: #b06ab0;
+        }
     }
 }
 

@@ -1,10 +1,4 @@
-export type Product ={
-    id: number;
-    name: string;
-    price: number;
-    image?: string;
-    category: string;
-};
+import type { Product} from "../types/product";
 
 const KEY = "products";
 
