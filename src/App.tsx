@@ -8,6 +8,7 @@ import  Checkout  from "./pages/Checkout/Checkout";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import Register from "./pages/Register/Register";
 import NotFound from "./pages/NotFound";
+import AddProduct from "./pages/AddProduct";
 
 import Layout from "./components/Layout/Layout";
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/add-product" element={<AddProduct />} />
             <Route path="/register" element={<Register />} />
           </Route>
 

@@ -4,9 +4,11 @@ import type { Product } from "../../types/product";
 
 type ProductCardProps ={
     product: Product;
+    onDelete?: (id: string) => void;
+    onEdit?: (product: Product) => void;
 };
 
-const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCard = ({ product, onDelete, onEdit }: ProductCardProps) => {
     const { addToCart } = useCart();
 
 
@@ -19,7 +21,39 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <p>${product.price}</p>
 
             <button onClick={() => addToCart(product)}>
-                Add to cart</button>
+                Add to cart
+                </button>
+
+                {onDelete && (
+                    <button onClick={() => onDelete(product._id)}
+                    style={{
+                        marginTop: "10px",
+                        background: "red",
+                        color: "white",
+                        border: "none",
+                        padding: "5px",
+                        cursor: "pointer",
+                        borderRadius: "4px",
+                    }}>
+                        Delete
+                    </button>
+                )}
+                {onEdit && (
+                        <button 
+                        onClick={() => onEdit(product)}
+                                            style={{
+                        marginTop: "10px",
+                        background: "red",
+                        color: "white",
+                        border: "none",
+                        padding: "5px",
+                        cursor: "pointer",
+                        borderRadius: "4px",
+                    }}
+                    
+                        >
+                        </button>
+                    )}
 
         </div>
     );

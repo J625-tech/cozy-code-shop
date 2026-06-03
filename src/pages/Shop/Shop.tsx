@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { useEffect} from "react"
-import { getProducts} from "../../utils/productStorage";
+import { useState, useEffect } from "react";
+import  axios from "axios";
 import type { Product } from "../../types/product";
 
 import  ProductCard  from "../../components/ProductCard";
@@ -13,21 +12,42 @@ const Shop = () => {
 
     const productsPerPage = 2;
 
+    const fetchProducts = async () => {
+        try {
+            const res = await axios.get("http://localhost:3000/products");
+            setProducts(res.data);
+        } catch (error) {
+            console.error("Error fetching products:", error);
+        }
+    };
     useEffect(() => {
-        setProducts(getProducts());
+        fetchProducts();
     }, []);
 
-    const totalPages = Math.ceil(
-        products.length / productsPerPage
-    );
+    const deleteProduct = async (id: string) => {
+        try {
+            await axios.delete(`http://localhost:3000/products/${id}`);
 
+            setProducts((prev) => prev.filter((p) => p._id !== id));
+
+            const newTotalPages = Math.ceil(
+                (products.length - 1) / productsPerPage);
+
+                if (page > newTotalPages) {
+                    setPage(newTotalPages || 1);
+                }
+        } catch (error) {
+            console.error("Error deleting product:", error);
+        }
+    };
+
+    const totalPages = Math.ceil(products.length / productsPerPage);
 
     const start = (page - 1) * productsPerPage;
     
     const end = start + productsPerPage;
 
 const visibleProducts = products.slice(start, end);
-
 
     return (
         <div>
@@ -43,9 +63,9 @@ const visibleProducts = products.slice(start, end);
                 >
                 {visibleProducts.map((product) => (
                     <ProductCard 
-                    key={product.id} 
+                    key={product._id} 
                     product={product}
-                    
+                    onDelete={deleteProduct}
                 />
             ))}
         </div>
