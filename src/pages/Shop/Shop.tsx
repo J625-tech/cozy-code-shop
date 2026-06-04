@@ -6,9 +6,11 @@ import  ProductCard  from "../../components/ProductCard";
 import Pagination from "../../components/Pagination/Pagination";
 
 
+
 const Shop = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [page, setPage] = useState(1);
+    const [editingProduct,setEditingProduct] = useState<Product | null>(null);
 
     const productsPerPage = 2;
 
@@ -41,6 +43,30 @@ const Shop = () => {
         }
     };
 
+    const handleEdit = (product: Product) => {
+        setEditingProduct(product);
+    };
+
+    const handleUpdate = async () => {
+        if (!editingProduct) return;
+        try {
+            const res = await axios.patch(`http://localhost:3000/products/${editingProduct._id}`,
+                editingProduct
+            );
+
+            setProducts((prev) => 
+                prev.map((p) => 
+                    p._id === editingProduct._id ? res.data : p
+                )
+            );
+
+            setEditingProduct(null);
+        } catch (error){
+            console.error("Update error:", error);
+        }
+    }
+
+
     const totalPages = Math.ceil(products.length / productsPerPage);
 
     const start = (page - 1) * productsPerPage;
@@ -66,6 +92,7 @@ const visibleProducts = products.slice(start, end);
                     key={product._id} 
                     product={product}
                     onDelete={deleteProduct}
+                    onEdit={handleEdit}
                 />
             ))}
         </div>
@@ -75,6 +102,60 @@ const visibleProducts = products.slice(start, end);
                 totalPages={totalPages}
                 onChange={setPage}
                 />
+                {editingProduct && (
+                    <div style={{
+                        position: "fixed",
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: "rgba(0,0,0,0,5)",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                    >
+                        <div style={{
+                            background: "white",
+                            padding: "20px",
+                            borderRadius: "10px",
+                            width: "300px",
+                        }}
+                        > 
+                        <h3>Edit Product</h3>
+
+                        <input 
+                        value={editingProduct.name}
+                        onChange={(e) => 
+                            setEditingProduct({
+                                ...editingProduct,
+                                name: e.target.value,
+                            })
+                        } 
+                        placeholder="name"
+                        />
+                        <input 
+                        value={editingProduct.price}
+                        onChange={(e) => 
+                            setEditingProduct({
+                                ...editingProduct,
+                                price: Number(e.target.value),
+                            })
+                        } 
+                        placeholder="price"
+                        />
+                        <button onClick={handleUpdate}>
+                            Save
+                        </button>
+
+                        <button onClick={() => setEditingProduct(null)}
+                            > Cancel 
+                        </button>
+
+                        </div>
+
+                    </div>
+                )}
         </div>
     );
 };

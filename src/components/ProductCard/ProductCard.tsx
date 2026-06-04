@@ -41,7 +41,7 @@ const ProductCard = ({ product, onDelete, onEdit }: ProductCardProps) => {
                 {onEdit && (
                         <button 
                         onClick={() => onEdit(product)}
-                                            style={{
+                        style={{
                         marginTop: "10px",
                         background: "red",
                         color: "white",
@@ -50,8 +50,8 @@ const ProductCard = ({ product, onDelete, onEdit }: ProductCardProps) => {
                         cursor: "pointer",
                         borderRadius: "4px",
                     }}
-                    
-                        >
+                    >
+                        Edit
                         </button>
                     )}
 

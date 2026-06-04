@@ -9,6 +9,7 @@ import AdminDashboard from "./pages/Admin/AdminDashboard";
 import Register from "./pages/Register/Register";
 import NotFound from "./pages/NotFound";
 import AddProduct from "./pages/AddProduct";
+import Login from "./pages/Login/Login";
 
 import Layout from "./components/Layout/Layout";
 
@@ -30,6 +31,7 @@ function App() {
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/add-product" element={<AddProduct />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
           </Route>
 
           <Route path="*" element={<NotFound />} />

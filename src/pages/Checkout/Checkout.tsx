@@ -3,7 +3,7 @@ import { useCart } from "../../context/CartContext";
 
 
 export default function Checkout () {
-    const { cart } = useCart();
+    const { cart, clearCart } = useCart();
 
     const [name, setName] = useState("");
     const [address, setAddress] = useState("");
@@ -13,14 +13,16 @@ export default function Checkout () {
         (sum, item) => sum + item.price * item.quantity, 0
     );
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: any) => {
         e.preventDefault();
 
         if (cart.length === 0) {
             alert("Cart is empty");
             return;
         }
-        alert (`Order placed!\nNmae: ${name}\nTotal: $${total.toFixed(2)}`);
+        alert (`Order placed!\nName: ${name}\nTotal: $${total.toFixed(2)}`);
+
+        clearCart();
 
         setName("");
         setAddress("");

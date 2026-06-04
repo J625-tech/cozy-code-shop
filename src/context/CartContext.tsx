@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import type { Product } from "../types/product";
 import type { CartItem } from "../types/cart";
 
@@ -8,12 +8,21 @@ type CartContextType ={
     removeFromCart: (id: CartItem["_id"]) => void;
     increase: (id: CartItem["_id"]) => void;
     decrease: (id: CartItem["_id"]) => void;
+    clearCart: () => void;
+
 };
 
 const CartContext = createContext<CartContextType | null>(null);
 
 export const CartProvider = ({ children }: any) => {
-    const [cart, setCart] = useState<CartItem[]>([]);
+    const [cart, setCart] = useState<CartItem[]>(() => {
+        const saved = localStorage.getItem("cart");
+        return saved ? JSON.parse(saved) : [];
+    });
+
+    useEffect(() => {
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }, [cart]);
 
     const addToCart = (product: Product) => {
         setCart((prev) => {
@@ -56,13 +65,20 @@ export const CartProvider = ({ children }: any) => {
                 .filter((item) => item.quantity > 0)
    );
 };
+
+const clearCart = () => {
+    setCart([]);
+    localStorage.removeItem("cart");
+};
     return (
         <CartContext.Provider 
         value={{ cart, 
                 addToCart, 
                 removeFromCart,
                 increase,
-                decrease }}>
+                decrease,
+                clearCart,
+             }}>
 
         {children}
         </CartContext.Provider>

@@ -13,7 +13,7 @@ type AuthContextType = {
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);
-const KEY = "admin_user";
+const KEY = "users";
 
 export const AuthProvider = ({ children }: {children: React.ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
